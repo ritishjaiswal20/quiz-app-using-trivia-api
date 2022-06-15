@@ -2,14 +2,15 @@ import React, { useState } from 'react'
 import './Home.css'
 import { Button, MenuItem, TextField } from '@mui/material';
 import Categories from '../Data/Categories';
-import {Link, useHistory} from "react-router-dom";
 import ErrorMessage from '../Components/ErrorMessage';
+import { useNavigate, useParams } from "react-router-dom";
 
-function Home({name,setName},fetchQuestions) {
+function Home({name,setName,fetchQuestions}) {
+  let navigate = useNavigate();
   const [category, setCategory] = useState('');
   const[difficulty, setDifficulty] = useState('');
   const[error, setError] = useState(false);
-  // const history=useHistory();
+
   const handleSubmit = (e) => {
     if(!category || !difficulty || !name){
       setError(true);
@@ -18,7 +19,8 @@ function Home({name,setName},fetchQuestions) {
     else{
         setError(false);
         fetchQuestions(category,difficulty);
-        // history.push("/");
+        navigate("/quiz");
+        console.log("submit");
     }
   };
   return (
