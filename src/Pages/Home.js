@@ -6,11 +6,11 @@ import ErrorMessage from '../Components/ErrorMessage';
 import { useNavigate, useParams } from "react-router-dom";
 
 function Home({name,setName,fetchQuestions}) {
-  let navigate = useNavigate();
+ 
   const [category, setCategory] = useState('');
   const[difficulty, setDifficulty] = useState('');
   const[error, setError] = useState(false);
-
+  let navigate = useNavigate();
   const handleSubmit = (e) => {
     if(!category || !difficulty || !name){
       setError(true);
